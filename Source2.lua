@@ -357,6 +357,6 @@ local FadeIn = TS:Create(background, TS_Info, {
 
 }):Play()
 
-FadeIn.Completed:Wait()
+task.wait(1)
 
 return chaoshubmodule
