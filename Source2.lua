@@ -367,6 +367,4 @@ FadeIn:Play()
 
 FadeIn.Completed:Wait()
 
-task.wait(1)
-
 return chaoshubmodule
