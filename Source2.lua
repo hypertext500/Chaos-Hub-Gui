@@ -266,11 +266,13 @@ checkKeyCorner.CornerRadius = UDim.new(0.200000003, 0)
 checkKeyCorner.Parent = checkkey
 
 function chaoshubmodule.FunctionCheckKeyButton(callback)
+
 	if callback and type(callback) == "function" then
 		checkkey.MouseButton1Click:Connect(function()
 			callback(inputkey.Text)
 		end)
 	end
+
 end
 
 function chaoshubmodule.chaoshubinterfacedelete()
