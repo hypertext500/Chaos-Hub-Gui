@@ -320,11 +320,13 @@ local TS_Info = TweenInfo.new(
 	Enum.EasingDirection.Out
 )
 
-TS:Create(background, TS_Info, {
+local FadeIn_Animation = TS:Create(background, TS_Info, {
 	
 	AnchorPoint = Vector2.new(0.5, 0.5),
 	BackgroundTransparency = 0.300
 	
 }):Play()
+
+FadeIn_Animation.Completed:Wait()
 
 return chaoshubmodule
