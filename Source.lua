@@ -1,3 +1,9 @@
+--[[
+
+  Interface made by: Laelmano24
+
+]]
+
 local chaoshubmodule = {}
 local LocalizationService = game:GetService("LocalizationService")
 local PlayerGui = gethui() or game:GetService("CoreGui")
