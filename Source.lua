@@ -5,58 +5,59 @@
 ]]
 
 local chaoshubmodule = {}
+local TS = game:GetService("TweenService")
 local LocalizationService = game:GetService("LocalizationService")
-local PlayerGui = gethui() or game:GetService("CoreGui")
+local PlayerGui = game.Players.LocalPlayer.PlayerGui
 local ChaosHubKey_Interface = PlayerGui:FindFirstChild("chaos hub key")
 local placeholdertextbr, getkeytextbr, checkkeytextbr
 
 if isfile and writefile and readfile then
-  if not isfile("chaoshubkey") then
-    writefile("chaoshubkey", "some_data_here") 
-  end
+	if not isfile("chaoshubkey") then
+		writefile("chaoshubkey", "some_data_here") 
+	end
 
-  function chaoshubmodule.CheckKeyFile(callback)
-    task.spawn(function()
-      if callback and isfile("chaoshubkey") then
-        local ketdata = readfile("chaoshubkey")
-        if #ketdata > 0 then
-          callback(ketdata)
-        end
-      end
-    end)
-  end
-  
-  function chaoshubmodule.SaveKeyFile(key)
-    task.spawn(function()
-      if key and #key > 0 and isfile("chaoshubkey") then
-        writefile("chaoshubkey", key) 
-      end
-    end)
-  end
-  
-  function chaoshubmodule.CheckPermission()
-    return true
-  end
-  
+	function chaoshubmodule.CheckKeyFile(callback)
+		task.spawn(function()
+			if callback and isfile("chaoshubkey") then
+				local ketdata = readfile("chaoshubkey")
+				if #ketdata > 0 then
+					callback(ketdata)
+				end
+			end
+		end)
+	end
+
+	function chaoshubmodule.SaveKeyFile(key)
+		task.spawn(function()
+			if key and #key > 0 and isfile("chaoshubkey") then
+				writefile("chaoshubkey", key) 
+			end
+		end)
+	end
+
+	function chaoshubmodule.CheckPermission()
+		return true
+	end
+
 else
-  warn("The chaos hub did not allow access to the folder")
-  function chaoshubmodule.CheckPermission()
-    return false
-  end
+	warn("The chaos hub did not allow access to the folder")
+	function chaoshubmodule.CheckPermission()
+		return false
+	end
 end
 
 if LocalizationService.RobloxLocaleId == "pt-br" then
-  placeholdertextbr = "Coloque a key aqui"
-  getkeytextbr = "Pegar a key"
-  checkkeytextbr = "Verificar a key"
+	placeholdertextbr = "Coloque a key aqui"
+	getkeytextbr = "Pegar a key"
+	checkkeytextbr = "Verificar a key"
 else
-  placeholdertextbr = "Put your key here"
-  getkeytextbr = "Get key"
-  checkkeytextbr = "Check key"
+	placeholdertextbr = "Put your key here"
+	getkeytextbr = "Get key"
+	checkkeytextbr = "Check key"
 end
 
 if ChaosHubKey_Interface then
-  ChaosHubKey_Interface:Destroy()
+	ChaosHubKey_Interface:Destroy()
 end
 
 local chaoshubkey = Instance.new("ScreenGui")
@@ -88,9 +89,9 @@ chaoshubkey.Parent = PlayerGui
 
 background.Name = "background"
 background.Parent = chaoshubkey
-background.AnchorPoint = Vector2.new(0.5, 0.5)
+background.AnchorPoint = Vector2.new(0.5, 0.3)
 background.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-background.BackgroundTransparency = 0.300
+background.BackgroundTransparency = 1
 background.BorderColor3 = Color3.fromRGB(0, 0, 0)
 background.BorderSizePixel = 0
 background.Position = UDim2.new(0.5, 0, 0.5, 0)
@@ -184,97 +185,97 @@ containerButton_ListLayout.VerticalAlignment = Enum.VerticalAlignment.Center
 containerButton_ListLayout.Padding = UDim.new(0, 30)
 
 function chaoshubmodule.CreateGetKeyButton(callback)
-  
-  if containerbutton:FindFirstChild("get key") then return end
-  
-  local getkey = Instance.new("TextButton")
-  local getKeyStroke = Instance.new("UIStroke")
-  local getKeyPadding = Instance.new("UIPadding")
-  local getKeyCorner = Instance.new("UICorner")
-  getkey.Name = "get key"
-  getkey.Parent = containerbutton
-  getkey.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-  getkey.BackgroundTransparency = 0.650
-  getkey.BorderColor3 = Color3.fromRGB(0, 0, 0)
-  getkey.BorderSizePixel = 0
-  getkey.Position = UDim2.new(0.0982423201, 0, 0.300925791, 0)
-  getkey.Size = UDim2.new(0.449999988, 0, 0, 50)
-  getkey.Font = Enum.Font.Unknown
-  getkey.Text = getkeytextbr
-  getkey.TextColor3 = Color3.fromRGB(255, 255, 255)
-  getkey.TextScaled = true
-  getkey.TextSize = 14.000
-  getkey.TextStrokeTransparency = 0.000
-  getkey.TextWrapped = true
-  getkey.FontFace = Font.new("rbxasset://fonts/families/Roboto.json", Enum.FontWeight.Bold)
-  
-  getKeyStroke.Thickness = 2
-  getKeyStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-  getKeyStroke.Color = Color3.fromRGB(255, 255, 255)
-  getKeyStroke.Parent = getkey
-  
-  getKeyPadding.Parent = getkey
-  getKeyPadding.PaddingBottom = UDim.new(0.200000003, 0)
-  getKeyPadding.PaddingLeft = UDim.new(0.200000003, 0)
-  getKeyPadding.PaddingRight = UDim.new(0.200000003, 0)
-  getKeyPadding.PaddingTop = UDim.new(0.200000003, 0)
-  
-  getKeyCorner.CornerRadius = UDim.new(0.200000003, 0)
-  getKeyCorner.Parent = getkey
-  
-  if callback and type(callback) == "function" then
-    getkey.MouseButton1Click:Connect(callback)
-  end
-  
+
+	if containerbutton:FindFirstChild("get key") then return end
+
+	local getkey = Instance.new("TextButton")
+	local getKeyStroke = Instance.new("UIStroke")
+	local getKeyPadding = Instance.new("UIPadding")
+	local getKeyCorner = Instance.new("UICorner")
+	getkey.Name = "get key"
+	getkey.Parent = containerbutton
+	getkey.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+	getkey.BackgroundTransparency = 0.650
+	getkey.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	getkey.BorderSizePixel = 0
+	getkey.Position = UDim2.new(0.0982423201, 0, 0.300925791, 0)
+	getkey.Size = UDim2.new(0.449999988, 0, 0, 50)
+	getkey.Font = Enum.Font.Unknown
+	getkey.Text = getkeytextbr
+	getkey.TextColor3 = Color3.fromRGB(255, 255, 255)
+	getkey.TextScaled = true
+	getkey.TextSize = 14.000
+	getkey.TextStrokeTransparency = 0.000
+	getkey.TextWrapped = true
+	getkey.FontFace = Font.new("rbxasset://fonts/families/Roboto.json", Enum.FontWeight.Bold)
+
+	getKeyStroke.Thickness = 2
+	getKeyStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+	getKeyStroke.Color = Color3.fromRGB(255, 255, 255)
+	getKeyStroke.Parent = getkey
+
+	getKeyPadding.Parent = getkey
+	getKeyPadding.PaddingBottom = UDim.new(0.200000003, 0)
+	getKeyPadding.PaddingLeft = UDim.new(0.200000003, 0)
+	getKeyPadding.PaddingRight = UDim.new(0.200000003, 0)
+	getKeyPadding.PaddingTop = UDim.new(0.200000003, 0)
+
+	getKeyCorner.CornerRadius = UDim.new(0.200000003, 0)
+	getKeyCorner.Parent = getkey
+
+	if callback and type(callback) == "function" then
+		getkey.MouseButton1Click:Connect(callback)
+	end
+
 end
 
 function chaoshubmodule.CreateCheckKeyButton(callback)
-  if containerbutton:FindFirstChild("check key") then return end
+	if containerbutton:FindFirstChild("check key") then return end
 
-  local checkkey = Instance.new("TextButton")
-  local checkKeyStroke = Instance.new("UIStroke")
-  local checkKeyPadding = Instance.new("UIPadding")
-  local checkKeyCorner = Instance.new("UICorner")
+	local checkkey = Instance.new("TextButton")
+	local checkKeyStroke = Instance.new("UIStroke")
+	local checkKeyPadding = Instance.new("UIPadding")
+	local checkKeyCorner = Instance.new("UICorner")
 
-  checkkey.Name = "check key"
-  checkkey.Parent = containerbutton
-  checkkey.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-  checkkey.BackgroundTransparency = 0.650
-  checkkey.BorderColor3 = Color3.fromRGB(0, 0, 0)
-  checkkey.BorderSizePixel = 0
-  checkkey.Position = UDim2.new(0.0982423201, 0, 0.300925791, 0)
-  checkkey.Size = UDim2.new(0.449999988, 0, 0, 50)
-  checkkey.Font = Enum.Font.Unknown
-  checkkey.Text = checkkeytextbr
-  checkkey.TextColor3 = Color3.fromRGB(255, 255, 255)
-  checkkey.TextScaled = true
-  checkkey.TextSize = 14.000
-  checkkey.TextWrapped = true
-  checkkey.FontFace = Font.new("rbxasset://fonts/families/Roboto.json", Enum.FontWeight.Bold)
+	checkkey.Name = "check key"
+	checkkey.Parent = containerbutton
+	checkkey.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+	checkkey.BackgroundTransparency = 0.650
+	checkkey.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	checkkey.BorderSizePixel = 0
+	checkkey.Position = UDim2.new(0.0982423201, 0, 0.300925791, 0)
+	checkkey.Size = UDim2.new(0.449999988, 0, 0, 50)
+	checkkey.Font = Enum.Font.Unknown
+	checkkey.Text = checkkeytextbr
+	checkkey.TextColor3 = Color3.fromRGB(255, 255, 255)
+	checkkey.TextScaled = true
+	checkkey.TextSize = 14.000
+	checkkey.TextWrapped = true
+	checkkey.FontFace = Font.new("rbxasset://fonts/families/Roboto.json", Enum.FontWeight.Bold)
 
-  checkKeyStroke.Thickness = 2
-  checkKeyStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-  checkKeyStroke.Color = Color3.fromRGB(255, 255, 255)
-  checkKeyStroke.Parent = checkkey
+	checkKeyStroke.Thickness = 2
+	checkKeyStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+	checkKeyStroke.Color = Color3.fromRGB(255, 255, 255)
+	checkKeyStroke.Parent = checkkey
 
-  checkKeyPadding.Parent = checkkey
-  checkKeyPadding.PaddingBottom = UDim.new(0.200000003, 0)
-  checkKeyPadding.PaddingLeft = UDim.new(0.200000003, 0)
-  checkKeyPadding.PaddingRight = UDim.new(0.200000003, 0)
-  checkKeyPadding.PaddingTop = UDim.new(0.200000003, 0)
+	checkKeyPadding.Parent = checkkey
+	checkKeyPadding.PaddingBottom = UDim.new(0.200000003, 0)
+	checkKeyPadding.PaddingLeft = UDim.new(0.200000003, 0)
+	checkKeyPadding.PaddingRight = UDim.new(0.200000003, 0)
+	checkKeyPadding.PaddingTop = UDim.new(0.200000003, 0)
 
-  checkKeyCorner.CornerRadius = UDim.new(0.200000003, 0)
-  checkKeyCorner.Parent = checkkey
+	checkKeyCorner.CornerRadius = UDim.new(0.200000003, 0)
+	checkKeyCorner.Parent = checkkey
 
-  if callback and type(callback) == "function" then
-    checkkey.MouseButton1Click:Connect(function()
-      callback(inputkey.Text)
-    end)
-  end
+	if callback and type(callback) == "function" then
+		checkkey.MouseButton1Click:Connect(function()
+			callback(inputkey.Text)
+		end)
+	end
 end
 
 function chaoshubmodule.chaoshubinterfacedelete()
-  chaoshubkey:Destroy()
+	chaoshubkey:Destroy()
 end
 
 closebutton.Name = "close button"
@@ -308,9 +309,22 @@ closebutton_UICorner.CornerRadius = UDim.new(0.500000003, 0)
 closebutton_UICorner.Parent = closebutton
 
 closebutton.MouseButton1Click:Connect(function()
-  
-  chaoshubkey:Destroy()
-  
+
+	chaoshubkey:Destroy()
+
 end)
+
+local TS_Info = TweenInfo.new(
+	0.6,
+	Enum.EasingStyle.Quad,
+	Enum.EasingDirection.Out
+)
+
+TS:Create(background, TS_Info, {
+	
+	AnchorPoint = Vector2.new(0.5, 0.5),
+	BackgroundTransparency = 0.300
+	
+}):Play()
 
 return chaoshubmodule
