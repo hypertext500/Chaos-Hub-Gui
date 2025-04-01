@@ -310,6 +310,12 @@ tutorialKeyPadding.PaddingTop = UDim.new(0.200000003, 0)
 tutorialkey_UICorner.CornerRadius = UDim.new(0.200000003, 0)
 tutorialkey_UICorner.Parent = tutorialkey
 
+tutorialkey.MouseButton1Click:Connect(function()
+
+    setclipboard("https://youtu.be/NvPQVjEAqVM?si=tTXkTsznghCvJ5p_")
+
+end)
+
 closebutton.Name = "close button"
 closebutton.Parent = background
 closebutton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
