@@ -16,18 +16,22 @@ if isfile and writefile and readfile then
   end
 
   function chaoshubmodule.CheckKeyFile(callback)
-    if callback and isfile("chaoshubkey") then
-      local ketdata = readfile("chaoshubkey")
-      if #ketdata > 0 then
-        callback(ketdata)
+    task.spawn(function()
+      if callback and isfile("chaoshubkey") then
+        local ketdata = readfile("chaoshubkey")
+        if #ketdata > 0 then
+          callback(ketdata)
+        end
       end
-    end
+    end)
   end
   
   function chaoshubmodule.SaveKeyFile(key)
-    if key and #key > 0 and isfile("chaoshubkey") then
-      writefile("chaoshubkey", key) 
-    end
+    task.spawn(function()
+      if key and #key > 0 and isfile("chaoshubkey") then
+        writefile("chaoshubkey", key) 
+      end
+    end)
   end
   
   function chaoshubmodule.CheckPermission()
