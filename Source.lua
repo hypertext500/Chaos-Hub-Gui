@@ -269,6 +269,10 @@ function chaoshubmodule.CreateCheckKeyButton(callback)
   end
 end
 
+function chaoshubmodule.chaoshubinterfacedelete()
+  chaoshubkey:Destroy()
+end
+
 closebutton.Name = "close button"
 closebutton.Parent = background
 closebutton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
