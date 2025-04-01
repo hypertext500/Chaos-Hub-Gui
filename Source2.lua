@@ -7,7 +7,7 @@
 local chaoshubmodule = {}
 local TS = game:GetService("TweenService")
 local LocalizationService = game:GetService("LocalizationService")
-local PlayerGui = gethui() or workspace:GetService("CoreGui)
+local PlayerGui = gethui() or workspace:GetService("CoreGui")
 local ChaosHubKey_Interface = PlayerGui:FindFirstChild("chaos hub key")
 local placeholdertextbr, getkeytextbr, checkkeytextbr
 
