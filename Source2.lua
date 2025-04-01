@@ -345,17 +345,19 @@ closebutton.MouseButton1Click:Connect(function()
 end)
 
 local TS_Info = TweenInfo.new(
-	0.6,
-	Enum.EasingStyle.Quad,
-	Enum.EasingDirection.Out
+    0.6,
+    Enum.EasingStyle.Quad,
+    Enum.EasingDirection.Out
 )
 
 local FadeIn = TS:Create(background, TS_Info, {
+    AnchorPoint = Vector2.new(0.5, 0.5),
+    BackgroundTransparency = 0.3
+})
 
-	AnchorPoint = Vector2.new(0.5, 0.5),
-	BackgroundTransparency = 0.300
+FadeIn:Play()
 
-}):Play()
+FadeIn.Completed:Wait()
 
 task.wait(1)
 
