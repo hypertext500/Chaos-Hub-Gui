@@ -65,6 +65,7 @@ local chaoshubkey = Instance.new("ScreenGui")
 local background = Instance.new("Frame")
 local UICorner = Instance.new("UICorner")
 local title = Instance.new("TextLabel")
+local titlePadding = Instance.new("UIPadding")
 local containermain = Instance.new("Frame")
 local UIListLayout = Instance.new("UIListLayout")
 local inputkey = Instance.new("TextBox")
@@ -124,6 +125,9 @@ title.TextScaled = true
 title.TextSize = 14.000
 title.TextWrapped = true
 title.FontFace = Font.new("rbxasset://fonts/families/Roboto.json", Enum.FontWeight.Bold)
+
+titlePadding.Parent = title
+titlePadding.PaddingTop = UDim.new(0.200000003, 0)
 
 containermain.Name = "container main"
 containermain.Parent = background
@@ -313,7 +317,7 @@ tutorialkey_UICorner.Parent = tutorialkey
 
 tutorialkey.MouseButton1Click:Connect(function()
 
-    setclipboard("https://youtu.be/NvPQVjEAqVM?si=tTXkTsznghCvJ5p_")
+	setclipboard("https://youtu.be/NvPQVjEAqVM?si=tTXkTsznghCvJ5p_")
 
 end)
 
@@ -354,14 +358,14 @@ closebutton.MouseButton1Click:Connect(function()
 end)
 
 local TS_Info = TweenInfo.new(
-    0.6,
-    Enum.EasingStyle.Quad,
-    Enum.EasingDirection.Out
+	0.6,
+	Enum.EasingStyle.Quad,
+	Enum.EasingDirection.Out
 )
 
 local FadeIn = TS:Create(background, TS_Info, {
-    AnchorPoint = Vector2.new(0.5, 0.5),
-    BackgroundTransparency = 0.3
+	AnchorPoint = Vector2.new(0.5, 0.5),
+	BackgroundTransparency = 0.3
 })
 
 FadeIn:Play()
