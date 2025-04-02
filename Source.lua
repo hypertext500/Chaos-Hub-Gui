@@ -93,9 +93,9 @@ chaoshubkey.Parent = PlayerGui
 
 background.Name = "background"
 background.Parent = chaoshubkey
-background.AnchorPoint = Vector2.new(0.5, 0.5)
+background.AnchorPoint = Vector2.new(0.5, 0.3)
+BackgroundTransparency = 1
 background.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-background.BackgroundTransparency = 0.300
 background.BorderColor3 = Color3.fromRGB(0, 0, 0)
 background.BorderSizePixel = 0
 background.Position = UDim2.new(0.514063656, 0, 0.554648221, 0)
