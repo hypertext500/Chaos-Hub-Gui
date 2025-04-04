@@ -99,8 +99,8 @@ BackgroundTransparency = 1
 background.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 background.BorderColor3 = Color3.fromRGB(0, 0, 0)
 background.BorderSizePixel = 0
-background.Position = UDim2.new(0.514063656, 0, 0.554648221, 0)
-background.Size = UDim2.new(0, 400, 0, 303)
+background.Position = UDim2.new(0.5, 0, 0.5, 0)
+background.Size = UDim2.new(0, 450, 0, 303)
 
 backgroundStroke.Thickness = 3
 backgroundStroke.Color = Color3.fromRGB(255, 255, 255)
